@@ -21,8 +21,8 @@ from utils_train_nn import evaluate, fit
 
 
 def load_train_val_data(
-        data_dir: str, batch_size: int,
-        training_fraction: float) -> tuple[DataLoader, DataLoader]:
+    data_dir: str, batch_size: int, training_fraction: float
+) -> tuple[DataLoader[torch.Tensor], DataLoader[torch.Tensor]]:
     """
     Returns two DataLoader objects that wrap training and validation data.
     Training and validation data are extracted from the full original training
