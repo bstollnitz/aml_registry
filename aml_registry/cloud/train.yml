@@ -1,0 +1,19 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: component_registry_train
+version: 1
+type: command
+
+inputs:
+  data_dir:
+    type: uri_folder
+
+outputs:
+  model_dir:
+    type: mlflow_model
+
+environment: azureml://registries/registry-demo/environments/environment-registry/versions/1
+
+code: ../src
+command: >-
+  python train.py --data_dir ${{inputs.data_dir}} --model_dir ${{outputs.model_dir}}
+

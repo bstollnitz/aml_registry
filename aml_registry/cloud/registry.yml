@@ -1,0 +1,12 @@
+name: registry-demo
+description: A demo registry to show how to use the Azure ML registry.
+location: westus2
+replication_locations:
+  - location: westus2
+    storage_config:
+      storage_account_hns: False
+      storage_account_type: Standard_LRS
+  - location: eastus2
+    storage_config:
+      storage_account_hns: False
+      storage_account_type: Standard_LRS
