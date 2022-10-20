@@ -45,7 +45,7 @@ def test(data_dir: str, model_dir: str, device: str) -> None:
     logging.info("Test accuracy: %f", test_accuracy)
 
 
-def main():
+def main() -> None:
     logging.basicConfig(level=logging.INFO)
 
     parser = argparse.ArgumentParser()

@@ -44,7 +44,7 @@ def load_train_val_data(
     return (train_loader, val_loader)
 
 
-def save_model(model_dir, model: nn.Module) -> None:
+def save_model(model_dir: str, model: nn.Module) -> None:
     """
     Saves the trained model.
     """
@@ -97,7 +97,7 @@ def train(data_dir: str, model_dir: str, device: str) -> None:
     save_model(model_dir, model)
 
 
-def main():
+def main() -> None:
     logging.basicConfig(level=logging.INFO)
 
     parser = argparse.ArgumentParser()
