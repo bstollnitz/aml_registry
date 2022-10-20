@@ -1,6 +1,5 @@
 """Utilities that help with training neural networks."""
 
-from typing import Tuple
 from tqdm import tqdm
 
 import torch
@@ -11,7 +10,7 @@ from torch.utils.data import DataLoader
 
 
 def fit(device: str, dataloader: DataLoader, model: nn.Module,
-        loss_fn: CrossEntropyLoss, optimizer: Optimizer) -> Tuple[float, float]:
+        loss_fn: CrossEntropyLoss, optimizer: Optimizer) -> tuple[float, float]:
     """
     Trains the given model for a single epoch.
     """
@@ -40,7 +39,7 @@ def fit(device: str, dataloader: DataLoader, model: nn.Module,
 
 def _fit_one_batch(x: torch.Tensor, y: torch.Tensor, model: nn.Module,
                    loss_fn: CrossEntropyLoss,
-                   optimizer: Optimizer) -> Tuple[torch.Tensor, torch.Tensor]:
+                   optimizer: Optimizer) -> tuple[torch.Tensor, torch.Tensor]:
     """
     Trains a single minibatch (backpropagation algorithm).
     """
@@ -55,7 +54,7 @@ def _fit_one_batch(x: torch.Tensor, y: torch.Tensor, model: nn.Module,
 
 
 def evaluate(device: str, dataloader: DataLoader, model: nn.Module,
-             loss_fn: CrossEntropyLoss) -> Tuple[float, float]:
+             loss_fn: CrossEntropyLoss) -> tuple[float, float]:
     """
     Evaluates the given model for the whole dataset once.
     """
@@ -85,7 +84,7 @@ def evaluate(device: str, dataloader: DataLoader, model: nn.Module,
 
 def _evaluate_one_batch(
         x: torch.Tensor, y: torch.Tensor, model: nn.Module,
-        loss_fn: CrossEntropyLoss) -> Tuple[torch.Tensor, torch.Tensor]:
+        loss_fn: CrossEntropyLoss) -> tuple[torch.Tensor, torch.Tensor]:
     """
     Evaluates a single minibatch.
     """

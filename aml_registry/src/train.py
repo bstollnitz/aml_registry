@@ -4,7 +4,6 @@ import argparse
 import logging
 import shutil
 from pathlib import Path
-from typing import Tuple
 
 import mlflow
 import numpy as np
@@ -23,7 +22,7 @@ from utils_train_nn import evaluate, fit
 
 def load_train_val_data(
         data_dir: str, batch_size: int,
-        training_fraction: float) -> Tuple[DataLoader, DataLoader]:
+        training_fraction: float) -> tuple[DataLoader, DataLoader]:
     """
     Returns two DataLoader objects that wrap training and validation data.
     Training and validation data are extracted from the full original training
