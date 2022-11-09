@@ -53,7 +53,7 @@ az ml registry create --file registry.yml
 Now let's give one other user read access to the contents of our registry. Go to the [Azure portal](https://ms.portal.azure.com/), search for "registry-demo" (the name of our registry resource), and click on it. On the left navigation, click on "Access control (IAM)." Click on "Add" in the top menu, then "Add role assignment." Select a role (for example, "Reader"), click "Next," click on "Select members," enter the email of the user you'd like to give read permissions to, and then click on "Review + assign." You can verify your new role assignment under the "Role assignments" tab.
 
 
-## Register environment and components in the registry
+## Registering an environment and components in the registry
 
 Let's register the training environment in the registry:
 
@@ -69,7 +69,7 @@ az ml component create --file test.yml --registry-name registry-demo
 ```
 
 
-## Train and deploy model in current workspace
+## Training and deploying in the current workspace
 
 Let's train a model in the current workspace, using the components (and environment) from the registry.
 
@@ -97,7 +97,7 @@ az ml online-endpoint invoke --name endpoint-registry-workspace --request-file .
 ```
 
 
-## Copy model to the registry and deploy it
+## Copying the model to the registry and deploying it
 
 If the endpoint works as expected in the current workspace, we can copy the model to the registry.
 
@@ -119,7 +119,7 @@ az ml online-endpoint invoke --name endpoint-registry --request-file ../test_dat
 ```
 
 
-## Delete the endpoints
+## Deleting the endpoints
 
 Delete the two endpoints to avoid charges:
 
