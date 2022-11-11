@@ -71,7 +71,14 @@ az ml component create --file test.yml --registry-name registry-demo
 
 ## Training and deploying in the current workspace
 
-Let's train a model in the current workspace, using the components (and environment) from the registry.
+Create the compute and data in the cloud, if you don't have them already created (from one of my other projects):
+
+```
+az ml compute create -f cluster-cpu.yml
+az ml data create -f data.yml
+```
+
+Now let's train a model in the current workspace, using the components (and environment) from the registry.
 
 ```
 run_id=$(az ml job create --file pipeline-job.yml --query name -o tsv)
