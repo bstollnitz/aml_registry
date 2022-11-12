@@ -1,5 +1,6 @@
-name: registry-demo
-description: A demo registry to show how to use the Azure ML registry.
+name: registry-demo-2
+tags:
+  description: A demo registry to show how to use the Azure ML registry.
 location: westus2
 replication_locations:
   - location: westus2
