@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
 name: component_registry_test
-version: 1
+version: 2
 type: command
 
 inputs:
