@@ -2,44 +2,41 @@
 
 This project shows how you can use an Azure ML registry to share components, environments, and models with the users in your organization.
 
-
 ## Blog post
 
 To learn more about the code in this repo, check out the accompanying blog post: https://bea.stollnitz.com/blog/aml-registry/
 
-
 ## Setup
 
-* You need to have an Azure subscription. You can get a [free subscription](https://azure.microsoft.com/en-us/free) to try it out.
-* Create a [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal).
-* Create a new machine learning workspace by following the "Create the workspace" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/quickstart-create-resources). Keep in mind that you'll be creating a "machine learning workspace" Azure resource, not a "workspace" Azure resource, which is entirely different!
-* If you have access to GitHub Codespaces, click on the "Code" button in this GitHub repo, select the "Codespaces" tab, and then click on "New codespace."
-* Alternatively, if you plan to use your local machine:
-  * Install the Azure CLI by following the instructions in the [documentation](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
-  * Install the ML extension to the Azure CLI by following the "Installation" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-cli).
-  * Install and activate the conda environment by executing the following commands:
-  ```
-  conda env create -f environment.yml
-  conda activate aml_registry
-  ```
-* In a terminal window, log in to Azure by executing `az login --use-device-code`. 
-* Set your default subscription by executing `az account set -s "<YOUR_SUBSCRIPTION_NAME_OR_ID>"`. You can verify your default subscription by executing `az account show`, or by looking at `~/.azure/azureProfile.json`.
-* Set your default resource group and workspace by executing `az configure --defaults group="<YOUR_RESOURCE_GROUP>" workspace="<YOUR_WORKSPACE>"`. You can verify your defaults by executing `az configure --list-defaults` or by looking at `~/.azure/config`.
-* You can now open the [Azure Machine Learning studio](https://ml.azure.com/), where you'll be able to see and manage all the machine learning resources we'll be creating.
-* Install the [Azure Machine Learning extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.vscode-ai), and log in to it by clicking on "Azure" in the left-hand menu, and then clicking on "Sign in to Azure."
+- You need to have an Azure subscription. You can get a [free subscription](https://azure.microsoft.com/en-us/free) to try it out.
+- Create a [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal).
+- Create a new machine learning workspace by following the "Create the workspace" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/quickstart-create-resources). Keep in mind that you'll be creating a "machine learning workspace" Azure resource, not a "workspace" Azure resource, which is entirely different!
+- Install the Azure CLI by following the instructions in the [documentation](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
+- Install the ML extension to the Azure CLI by following the "Installation" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-cli).
+- Install and activate the conda environment by executing the following commands:
 
+```
+conda env create -f environment.yml
+conda activate aml_registry
+```
+
+- Within VS Code, go to the Command Palette clicking "Ctrl + Shift + P," type "Python: Select Interpreter," and select the environment that matches the name of this project.
+- In a terminal window, log in to Azure by executing `az login --use-device-code`.
+- Set your default subscription by executing `az account set -s "<YOUR_SUBSCRIPTION_NAME_OR_ID>"`. You can verify your default subscription by executing `az account show`, or by looking at `~/.azure/azureProfile.json`.
+- Set your default resource group and workspace by executing `az configure --defaults group="<YOUR_RESOURCE_GROUP>" workspace="<YOUR_WORKSPACE>"`. You can verify your defaults by executing `az configure --list-defaults` or by looking at `~/.azure/config`.
+- You can now open the [Azure Machine Learning studio](https://ml.azure.com/), where you'll be able to see and manage all the machine learning resources we'll be creating.
+- Install the [Azure Machine Learning extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.vscode-ai), and log in to it by clicking on "Azure" in the left-hand menu, and then clicking on "Sign in to Azure."
 
 ## Training and inference on your development machine
 
-* Under "Run and Debug" on VS Code's left navigation, choose the "Train locally" run configuration and press F5.
-* Repeat for the "Test locally" configuration.
+- Under "Run and Debug" on VS Code's left navigation, choose the "Train locally" run configuration and press F5.
+- Repeat for the "Test locally" configuration.
 
 You can look at the logs generated by the code in these files with the following command:
 
 ```
 mlflow ui
 ```
-
 
 ## Creating a registry
 
@@ -51,7 +48,6 @@ az ml registry create --file registry.yml
 ```
 
 Now let's give one other user read access to the contents of our registry. Go to the [Azure portal](https://ms.portal.azure.com/), search for "registry-demo" (the name of our registry resource), and click on it. On the left navigation, click on "Access control (IAM)." Click on "Add" in the top menu, then "Add role assignment." Select a role (for example, "Reader"), click "Next," click on "Select members," enter the email of the user you'd like to give read permissions to, and then click on "Review + assign." You can verify your new role assignment under the "Role assignments" tab.
-
 
 ## Registering an environment and components in the registry
 
@@ -67,7 +63,6 @@ Now let's register our two components (which use the environment we just created
 az ml component create --file train.yml --registry-name registry-demo
 az ml component create --file test.yml --registry-name registry-demo
 ```
-
 
 ## Training and deploying in the current workspace
 
@@ -103,7 +98,6 @@ Invoke the endpoint.
 az ml online-endpoint invoke --name endpoint-registry-workspace --request-file ../test_data/images_azureml.json
 ```
 
-
 ## Copying the model to the registry and deploying it
 
 If the endpoint works as expected in the current workspace, we can copy the model to the registry.
@@ -125,7 +119,6 @@ Invoke the endpoint.
 az ml online-endpoint invoke --name endpoint-registry --request-file ../test_data/images_azureml.json
 ```
 
-
 ## Deleting the endpoints
 
 Delete the two endpoints to avoid charges:
@@ -135,9 +128,8 @@ az ml online-endpoint delete --name endpoint-registry-workspace -y
 az ml online-endpoint delete --name endpoint-registry -y
 ```
 
-
 ## Related resources
 
-* [How to assign a role to an Azure resource](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-steps)
-* [Azure Machine Learning registries overview](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-registries?tabs=cli)
-* [Hands-on with Azure Machine Learning registries](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-share-models-pipelines-across-workspaces-with-registries?tabs=cli)
+- [How to assign a role to an Azure resource](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-steps)
+- [Azure Machine Learning registries overview](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-registries?tabs=cli)
+- [Hands-on with Azure Machine Learning registries](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-share-models-pipelines-across-workspaces-with-registries?tabs=cli)
